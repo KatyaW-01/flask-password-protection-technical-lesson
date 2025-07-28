@@ -46,7 +46,7 @@ class Login(Resource):
 
         user = User.query.filter(User.username == username).first()
 
-        if user:
+        if user and user.authenticate(password):
             session['user_id'] = user.id
             return UserSchema().dump(user), 200
 

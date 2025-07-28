@@ -22,6 +22,7 @@ class Signup(Resource):
         user = User(
             username=json['username']
         )
+        user.password_hash = json['password']
         db.session.add(user)
         db.session.commit()
         return UserSchema().dump(user), 201
